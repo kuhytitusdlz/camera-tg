@@ -28,7 +28,7 @@ def record_loop():
         duration = next_stop - now_ts
 
         # 3) Запуск ffmpeg
-        timestamp = datetime.now(timezone.utc).strftime("%Y.%m.%d_%H.%M.%S")
+        timestamp = datetime.now().strftime("%Y.%m.%d_%H.%M.%S")
         part_path = os.path.join(VIDEO_DIR, f"{timestamp}.mkv.part")
         cmd = [
             'ffmpeg', '-hide_banner', '-y',

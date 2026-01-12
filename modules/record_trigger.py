@@ -45,7 +45,7 @@ def trigger_record(duration: int = ALERT_RECORD_SECONDS):
         time.sleep(5)
         return
 
-    timestamp = datetime.now(timezone.utc).strftime('%Y.%m.%d_%H.%M.%S')
+    timestamp = datetime.now().strftime('%Y.%m.%d_%H.%M.%S')
     part_path = os.path.join(VIDEO_DIR, f"{timestamp}.mkv.part")
     final_path = part_path[:-5]
 

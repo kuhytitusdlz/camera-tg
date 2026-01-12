@@ -1,8 +1,13 @@
 import threading
 from dotenv import load_dotenv
+import os
+import time
+
 
 load_dotenv()
-
+if os.getenv("TZ"):
+    time.tzset()
+    
 from modules.logging_setup import setup_logging
 
 # Configure stdlib logging (controls 3rd party libs like httpx).
