@@ -1,0 +1,49 @@
+services:
+  camera1:
+    build: .
+    container_name: camera1
+    hostname: camera1
+    # restart: unless-stopped
+    restart: always
+    environment:
+      TZ: "Asia/Yekaterinburg"
+    env_file:
+      - .env1
+    volumes:
+      - /tmp/camera1:/videos:rw
+      - ./modules:/app/modules:ro
+      - ./main.py:/app/main.py:ro
+    logging:
+      # driver: "none"
+      options:
+        max-size: "5m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 1400M
+          cpus: '0.90'
+  camera2:
+    build: .
+    container_name: camera2
+    hostname: camera2
+    # restart: unless-stopped
+    restart: always
+    environment:
+      TZ: "Asia/Yekaterinburg"
+    env_file:
+      - .env2
+    volumes:
+      - /tmp/camera2:/videos:rw
+      - ./modules:/app/modules:ro
+      - ./main.py:/app/main.py:ro
+    logging:
+      # driver: "none"
+      options:
+        max-size: "5m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 1400M
+          cpus: '0.90'
