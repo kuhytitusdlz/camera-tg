@@ -309,9 +309,13 @@ def send_video_file(path: str, as_document: bool = False):
     file_key = "document" if as_document else "video"
     url = f"https://api.telegram.org/bot{TG_TOKEN}/{method}"
 
+    # Подпись к видео/документу: имя файла без расширения (в имени уже есть дата/время)
+    caption = os.path.splitext(os.path.basename(path))[0]
+
     fields = {
         "chat_id": TG_CHAT_ID,
         "disable_notification": _bool_to_tg(TG_SILENT_MODE == 0),
+        "caption": caption,
     }
 
     try:
